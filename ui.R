@@ -10,19 +10,31 @@ library(shiny)
 shinyUI(pageWithSidebar(
   
   # Application title
-  headerPanel("Old Faithful Geyser Data"),
+  headerPanel("Examine Correlation among Sales Data"),
   
   # Sidebar with a slider input for number of bins
   sidebarPanel(
-    sliderInput("bins",
-                "Number of bins:",
-                min = 1,
-                max = 50,
-                value = 30)
+          selectInput("y", "X Axis",
+                      c("Sales", "Revenue", "Price_Index", "Income_Level",
+                        "Market_Potential"
+                      ),
+                      selected = "Sales"
+          ),
+          selectInput("x", "Y Axis",
+                      c("Sales", "Revenue", "Price_Index", "Income_Level",
+                        "Market_Potential"
+                      ),
+                      selected = "Revenue"
+          ),
+          submitButton("Update View", icon("refresh"))
   ),
   
   # Show a plot of the generated distribution
   mainPanel(
-    plotOutput("distPlot")
+          h4('Plot'),
+    plotOutput("distPlot"),
+    
+    h4('Correlation Test'),    
+    uiOutput("Corr")
   )
 ))

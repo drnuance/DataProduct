@@ -1,0 +1,17 @@
+{
+    "contents" : "library(dplyr)\nlibrary(reshape2)\nlibrary(ggplot2)\n\nsetwd(\"~/Documents/Academic/cloud\")\ninput <- read.csv2(\"CloudData.csv\",  header = TRUE, sep=\",\", na.strings = c(\"n/a\", \"(no value)\"))\n\ncolnames(input) <- c(\"Date\", \"Time\", \"Country\", \"ProductFamily\", \"Product\", \"URI\", \"Page\", \"TaskFlow\", \"EventType\", \"ComponentType\", \"ComponentTypeClass\", \"Component\", \"ComponentClientId\", \"PageDelivery\", \"DelivertyDetail\", \"PageLoadTime\", \"End2EndTime\", \"ServerTime\", \"NetworkTime\", \"BrowserTime\")\n\n\ninput$DateTime <- strftime(strptime(paste(input$Date, input$Time), format=\"%a %d %b %Y %R\"))\n\ninter <- select(input, DateTime, Product, Page, TaskFlow, End2EndTime, PageLoadTime, PageDelivery, Time) \n\ninter <- inter[strptime(inter$DateTime, format=\"%F %X\") < strptime(\"2015-09-05 03:05:00\", format=\"%F %X\"),]\ninter <- inter[!is.na(inter$End2EndTime), ]\n\ninter <- group_by(inter, DateTime, PageDelivery) %>%\n        summarize(End=mean(End2EndTime)) \n\ng1 <- ggplot(inter, aes(x=strptime(DateTime, format=\"%F %X\"), y=End, group=PageDelivery, colour=PageDelivery)) \ng1 <- g1 + geom_line() \ng1\n\nsucc <- inter[inter$PageDelivery==\"Success\", ]\ng2 <- ggplot(succ, aes(x=strptime(DateTime, format=\"%F %X\"), y=End)) \ng2 <- g2 + geom_line() \ng2 <- g2 + stat_smooth(method = \"lm\")\ng2",
+    "created" : 1443230028892.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1727516094",
+    "id" : "AD66EA6D",
+    "lastKnownWriteTime" : 1443066027,
+    "path" : "~/Documents/Academic/cloud/analysis.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

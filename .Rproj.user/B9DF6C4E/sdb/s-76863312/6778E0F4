@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1443232228126.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6778E0F4",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "r1rh0a4hmd",
+        "caption" : "freey",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=freey&cache_key=r1rh0a4hmd",
+        "displayedObservations" : "39",
+        "environment" : "",
+        "object" : "freey",
+        "totalObservations" : "39",
+        "variables" : "5"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
