@@ -31,7 +31,9 @@ shinyUI(pageWithSidebar(
   
   # Show a plot of the generated distribution
   mainPanel(
-          h4('Plot'),
+    p("This simple app uses the Freeny's Revenue Data in library(datasets) to help managers to do simple business anlaysis on factors affecting revenue. Managers can plot any two variables in the dataset to get some idea on the correlation."),
+    p("In addition, a Correlation test will be run on the assumption that these two variables are correlated. The rejection level is set to 1%. System will display appropriate output based on calculated P Value, helping managers to make decision based on data, rather than intuition."),
+    h4('Plot'),
     plotOutput("distPlot"),
     
     h4('Correlation Test'),    
